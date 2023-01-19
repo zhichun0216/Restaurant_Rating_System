@@ -24,8 +24,12 @@ class RestaurantRatingSystem:
         }
 
         self.fuzzy_output = reduce(np.fmax, [rule.predict(inputs) for rule in self.rules])
-
-
+        arrays = [rule.predict(inputs) for rule in self.rules]
+        mean_array = []
+        for i in range(len(arrays[0])):
+            non_zero_indices = [k for k, array in enumerate(arrays) for j, x in enumerate(array) if x != 0 and j==i]
+            mean_array.append(np.mean([arrays[k][i] for k in non_zero_indices]))
+        self.fuzzy_output = np.array(mean_array)
         return fuzz.defuzz(rating, self.fuzzy_output, 'centroid')
 
     def visualize(self):

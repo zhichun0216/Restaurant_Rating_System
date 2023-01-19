@@ -35,7 +35,6 @@ class Rule:
             self.output.append(fuzz.interp_membership(x, xmf, xx))
 
         self.clip = np.fmin(self.output_mf, reduce(min, self.output))
-
         return self.clip
 
     def __str__(self) -> str:
