@@ -121,13 +121,13 @@ rules = [
     Rule(IF=[T(Variable.SERVICE, Term.BAD), T(Variable.ENVIRONMENT, Term.GOOD)], THEN=T(Variable.RATING, Term.NORMAL)),
 
     Rule(IF=[T(Variable.SERVICE, Term.NORMAL), T(Variable.FOOD_QUALITY, Term.BAD)], THEN=T(Variable.RATING, Term.BAD)),
-    Rule(IF=[T(Variable.SERVICE, Term.NORMAL), T(Variable.FOOD_QUALITY, Term.NORMAL)], THEN=T(Variable.RATING, Term.BAD)),
-    Rule(IF=[T(Variable.SERVICE, Term.NORMAL), T(Variable.FOOD_QUALITY, Term.GOOD)], THEN=T(Variable.RATING, Term.NORMAL)),
+    Rule(IF=[T(Variable.SERVICE, Term.NORMAL), T(Variable.FOOD_QUALITY, Term.NORMAL)], THEN=T(Variable.RATING, Term.NORMAL)), 
+    Rule(IF=[T(Variable.SERVICE, Term.NORMAL), T(Variable.FOOD_QUALITY, Term.GOOD)], THEN=T(Variable.RATING, Term.GOOD)),
     Rule(IF=[T(Variable.SERVICE, Term.NORMAL), T(Variable.PRICE, Term.LOW)], THEN=T(Variable.RATING, Term.NORMAL)),
-    Rule(IF=[T(Variable.SERVICE, Term.NORMAL), T(Variable.PRICE, Term.NORMAL)], THEN=T(Variable.RATING, Term.BAD)),
+    Rule(IF=[T(Variable.SERVICE, Term.NORMAL), T(Variable.PRICE, Term.NORMAL)], THEN=T(Variable.RATING, Term.NORMAL)), 
     Rule(IF=[T(Variable.SERVICE, Term.NORMAL), T(Variable.PRICE, Term.HIGH)], THEN=T(Variable.RATING, Term.BAD)),
     Rule(IF=[T(Variable.SERVICE, Term.NORMAL), T(Variable.ENVIRONMENT, Term.BAD)], THEN=T(Variable.RATING, Term.BAD)),
-    Rule(IF=[T(Variable.SERVICE, Term.NORMAL), T(Variable.ENVIRONMENT, Term.NORMAL)], THEN=T(Variable.RATING, Term.BAD)),
+    Rule(IF=[T(Variable.SERVICE, Term.NORMAL), T(Variable.ENVIRONMENT, Term.NORMAL)], THEN=T(Variable.RATING, Term.NORMAL)), 
     Rule(IF=[T(Variable.SERVICE, Term.NORMAL), T(Variable.ENVIRONMENT, Term.GOOD)], THEN=T(Variable.RATING, Term.NORMAL)),
 
     Rule(IF=[T(Variable.SERVICE, Term.GOOD), T(Variable.FOOD_QUALITY, Term.BAD)], THEN=T(Variable.RATING, Term.NORMAL)),
@@ -141,12 +141,12 @@ rules = [
     Rule(IF=[T(Variable.SERVICE, Term.GOOD), T(Variable.ENVIRONMENT, Term.GOOD)], THEN=T(Variable.RATING, Term.GOOD)),
 
     # # Food quality vs others
-    Rule(IF=[T(Variable.FOOD_QUALITY, Term.BAD), T(Variable.PRICE, Term.LOW)], THEN=T(Variable.RATING, Term.GOOD)),
-    Rule(IF=[T(Variable.FOOD_QUALITY, Term.BAD), T(Variable.PRICE, Term.NORMAL)], THEN=T(Variable.RATING, Term.GOOD)),
-    Rule(IF=[T(Variable.FOOD_QUALITY, Term.BAD), T(Variable.PRICE, Term.HIGH)], THEN=T(Variable.RATING, Term.GOOD)),
-    Rule(IF=[T(Variable.FOOD_QUALITY, Term.BAD), T(Variable.ENVIRONMENT, Term.BAD)], THEN=T(Variable.RATING, Term.GOOD)),
-    Rule(IF=[T(Variable.FOOD_QUALITY, Term.BAD), T(Variable.ENVIRONMENT, Term.NORMAL)], THEN=T(Variable.RATING, Term.GOOD)),
-    Rule(IF=[T(Variable.FOOD_QUALITY, Term.BAD), T(Variable.ENVIRONMENT, Term.GOOD)], THEN=T(Variable.RATING, Term.GOOD)),
+    Rule(IF=[T(Variable.FOOD_QUALITY, Term.BAD), T(Variable.PRICE, Term.LOW)], THEN=T(Variable.RATING, Term.NORMAL)),
+    Rule(IF=[T(Variable.FOOD_QUALITY, Term.BAD), T(Variable.PRICE, Term.NORMAL)], THEN=T(Variable.RATING, Term.BAD)),
+    Rule(IF=[T(Variable.FOOD_QUALITY, Term.BAD), T(Variable.PRICE, Term.HIGH)], THEN=T(Variable.RATING, Term.BAD)),
+    Rule(IF=[T(Variable.FOOD_QUALITY, Term.BAD), T(Variable.ENVIRONMENT, Term.BAD)], THEN=T(Variable.RATING, Term.BAD)),
+    Rule(IF=[T(Variable.FOOD_QUALITY, Term.BAD), T(Variable.ENVIRONMENT, Term.NORMAL)], THEN=T(Variable.RATING, Term.BAD)),
+    Rule(IF=[T(Variable.FOOD_QUALITY, Term.BAD), T(Variable.ENVIRONMENT, Term.GOOD)], THEN=T(Variable.RATING, Term.NORMAL)),
 
     Rule(IF=[T(Variable.FOOD_QUALITY, Term.NORMAL), T(Variable.PRICE, Term.LOW)], THEN=T(Variable.RATING, Term.GOOD)),
     Rule(IF=[T(Variable.FOOD_QUALITY, Term.NORMAL), T(Variable.PRICE, Term.NORMAL)], THEN=T(Variable.RATING, Term.NORMAL)),
