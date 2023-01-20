@@ -34,7 +34,7 @@ if choose == "Analyze":
 
     defuzzification_method = st.selectbox(
         "Dufuzzification Method",
-        ("centroid", "bisect", "mom", "som", "lom"),
+        ("centroid", "bisector", "mom", "som", "lom"),
     )
 
     sentiment = st.slider('Sentiment: Please choose between 0 - 100', 0, 100, value=0)
