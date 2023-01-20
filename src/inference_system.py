@@ -4,7 +4,6 @@ import numpy as np
 import skfuzzy as fuzz
 from matplotlib import pyplot as plt
 import streamlit as st
-
 from src import rules, Variable, MF, sys_variables, rating
 
 
@@ -13,7 +12,7 @@ class RestaurantRatingSystem:
     def __init__(self) -> None:
         self.rules = rules
 
-    def predict(self, sentiment, service, food_quality, price, environment):
+    def predict(self, sentiment, service, food_quality, price, environment, aggregate_operation, defuzzification_method):
 
         inputs = {
             Variable.SENTIMENT: sentiment,
@@ -23,14 +22,16 @@ class RestaurantRatingSystem:
             Variable.ENVIRONMENT: environment,
         }
 
-        self.fuzzy_output = reduce(np.fmax, [rule.predict(inputs) for rule in self.rules])
-        arrays = [rule.predict(inputs) for rule in self.rules]
-        mean_array = []
-        for i in range(len(arrays[0])):
-            non_zero_indices = [k for k, array in enumerate(arrays) for j, x in enumerate(array) if x != 0 and j==i]
-            mean_array.append(np.mean([arrays[k][i] for k in non_zero_indices]))
-        self.fuzzy_output = np.array(mean_array)
-        return fuzz.defuzz(rating, self.fuzzy_output, 'centroid')
+        if aggregate_operation == "Max":
+            self.fuzzy_output = reduce(np.fmax, [rule.predict(inputs) for rule in self.rules])
+        else:
+            arrays = [rule.predict(inputs) for rule in self.rules]
+            mean_array = []
+            for i in range(len(arrays[0])):
+                non_zero_indices = [k for k, array in enumerate(arrays) for j, x in enumerate(array) if x != 0 and j==i]
+                mean_array.append(np.mean([arrays[k][i] for k in non_zero_indices]))
+            self.fuzzy_output = np.array(mean_array)
+        return fuzz.defuzz(rating, self.fuzzy_output, defuzzification_method)
 
     def visualize(self):
         fig, ax = plt.subplots(figsize=(15, 10))

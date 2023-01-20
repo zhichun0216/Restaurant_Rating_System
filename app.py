@@ -6,8 +6,8 @@ from matplotlib import pyplot as plt
 
 result = 0
 
-def getResult(sentiment, service, food_quality, price, environment):
-        score = model.predict(sentiment, service, food_quality, price, environment)
+def getResult(sentiment, service, food_quality, price, environment, aggregate_operation, defuzzification_method):
+        score = model.predict(sentiment, service, food_quality, price, environment, aggregate_operation, defuzzification_method)
         return score
 
 
@@ -27,6 +27,16 @@ with st.sidebar:
 if choose == "Analyze":
     st.title("Analyze")
 
+    aggregate_operation = st.selectbox(
+        "Aggregate operation",
+        ("Max", "Mean"),
+    )
+
+    defuzzification_method = st.selectbox(
+        "Dufuzzification Method",
+        ("centroid", "bisect", "mom", "som", "lom"),
+    )
+
     sentiment = st.slider('Sentiment: Please choose between 0 - 100', 0, 100, value=0)
     st.write("Sentiment:", sentiment)
 
@@ -34,7 +44,7 @@ if choose == "Analyze":
     st.write("Service:", service) 
 
     food_quality = st.slider('Food Quality: Please choose between 0 - 100', 0, 100, value=0)
-    st.write("Sentiment:", food_quality) 
+    st.write("Food Quality:", food_quality) 
     
     price = st.slider('Price: Please choose between 5 - 60 (RM)', 5, 60, value=5)
     st.write("Price:", price) 
@@ -43,7 +53,7 @@ if choose == "Analyze":
     st.write("Environment:", environment) 
     
     if st.button("Analyze"):
-        result = getResult(sentiment, service, food_quality, price, environment)
+        result = getResult(sentiment, service, food_quality, price, environment, aggregate_operation, defuzzification_method)
 
     st.subheader("Restaurant Rating (0-100): " + str("{:.2f}".format(result)))
     if result != 0:
